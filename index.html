@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Shreya ✨🎂</title>
+    <meta name="description" content="A special birthday wish for the most amazing person - Shreya!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="gift-box">
+                <div class="gift-lid">
+                    <div class="gift-bow"></div>
+                </div>
+                <div class="gift-body"></div>
+            </div>
+            <p class="preloader-text">Unwrapping something special...</p>
+        </div>
+    </div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Floating Music Toggle -->
+    <button id="music-toggle" class="music-btn" aria-label="Toggle music">
+        <span class="music-icon">🎵</span>
+        <span class="music-pulse"></span>
+    </button>
+
+    <!-- Section 1: Hero / Grand Entrance -->
+    <section id="hero" class="section hero-section">
+        <div class="hero-overlay"></div>
+        <div class="floating-elements">
+            <span class="float-emoji" style="--delay: 0s; --x: 10%;">🎈</span>
+            <span class="float-emoji" style="--delay: 1.5s; --x: 25%;">✨</span>
+            <span class="float-emoji" style="--delay: 0.8s; --x: 40%;">🎁</span>
+            <span class="float-emoji" style="--delay: 2.2s; --x: 55%;">💖</span>
+            <span class="float-emoji" style="--delay: 1s; --x: 70%;">🌟</span>
+            <span class="float-emoji" style="--delay: 2.8s; --x: 85%;">🎀</span>
+            <span class="float-emoji" style="--delay: 0.3s; --x: 92%;">🎂</span>
+        </div>
+        <div class="hero-content">
+            <div class="sparkle-container">
+                <div class="sparkle s1"></div>
+                <div class="sparkle s2"></div>
+                <div class="sparkle s3"></div>
+                <div class="sparkle s4"></div>
+            </div>
+            <p class="hero-subtitle reveal-text">~ A Special Day for a Special Soul ~</p>
+            <h1 class="hero-title">
+                <span class="title-line line-1">Happy</span>
+                <span class="title-line line-2">Birthday</span>
+            </h1>
+            <div class="hero-name-wrapper">
+                <span class="hero-name">Shreya</span>
+                <div class="name-underline"></div>
+            </div>
+            <div class="hero-stars">
+                <span>⭐</span><span>⭐</span><span>⭐</span>
+            </div>
+            <a href="#message" class="scroll-cta" id="scroll-cta">
+                <span>Open Your Gift</span>
+                <div class="cta-arrow">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Section 2: Birthday Message -->
+    <section id="message" class="section message-section">
+        <div class="section-bg-pattern"></div>
+        <div class="container">
+            <div class="message-card glass-card">
+                <div class="card-glow"></div>
+                <div class="message-header">
+                    <span class="message-emoji">💌</span>
+                    <h2 class="section-title">A Letter For You</h2>
+                    <div class="title-decoration">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+                <div class="message-body">
+                    <p class="typewriter-text" id="typewriter">
+                        Dear Shreya, on this beautiful day, I just want to remind you how incredibly special you are. 
+                        Your smile lights up every room, your laughter is the best melody, and your friendship is the 
+                        greatest gift I've ever received. You deserve all the happiness, love, and magic in the world. 
+                        Here's to another year of amazing adventures, endless laughs, and beautiful memories together. 
+                        May all your dreams come true and may this year bring you everything your heart desires. 
+                        Happy Birthday to the most wonderful person I know! 🥳💖
+                    </p>
+                </div>
+                <div class="message-signature">
+                    <span class="signature-text">— With all my love ❤️</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Photo Memories -->
+    <section id="memories" class="section memories-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-emoji">📸</span>
+                <h2 class="section-title light-title">Our Beautiful Memories</h2>
+                <div class="title-decoration light-decoration">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item item-1 reveal-item">
+                    <div class="gallery-frame glass-card">
+                        <div class="photo-placeholder">
+                            <span class="placeholder-icon">📷</span>
+                            <span class="placeholder-text">Our Photo</span>
+                        </div>
+                        <div class="gallery-caption">
+                            <p>Unforgettable moments ✨</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item item-2 reveal-item">
+                    <div class="gallery-frame glass-card">
+                        <div class="photo-placeholder">
+                            <span class="placeholder-icon">📷</span>
+                            <span class="placeholder-text">Our Photo</span>
+                        </div>
+                        <div class="gallery-caption">
+                            <p>Best times together 💕</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item item-3 reveal-item">
+                    <div class="gallery-frame glass-card">
+                        <div class="photo-placeholder">
+                            <span class="placeholder-icon">📷</span>
+                            <span class="placeholder-text">Our Photo</span>
+                        </div>
+                        <div class="gallery-caption">
+                            <p>Memories we cherish 🌸</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item item-4 reveal-item">
+                    <div class="gallery-frame glass-card">
+                        <div class="photo-placeholder">
+                            <span class="placeholder-icon">📷</span>
+                            <span class="placeholder-text">Our Photo</span>
+                        </div>
+                        <div class="gallery-caption">
+                            <p>Adventures & laughter 🎉</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Wishes / Qualities -->
+    <section id="wishes" class="section wishes-section">
+        <div class="section-bg-pattern pattern-alt"></div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-emoji">🌟</span>
+                <h2 class="section-title">Why You're Amazing</h2>
+                <div class="title-decoration">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="wishes-grid">
+                <div class="wish-card glass-card reveal-item">
+                    <div class="wish-icon">💎</div>
+                    <h3>Beautiful Soul</h3>
+                    <p>Your kindness and warmth make the world a better place</p>
+                </div>
+                <div class="wish-card glass-card reveal-item">
+                    <div class="wish-icon">🦋</div>
+                    <h3>Free Spirit</h3>
+                    <p>Your energy and zest for life is truly inspiring</p>
+                </div>
+                <div class="wish-card glass-card reveal-item">
+                    <div class="wish-icon">🌈</div>
+                    <h3>Pure Magic</h3>
+                    <p>You bring color and joy into everyone's life around you</p>
+                </div>
+                <div class="wish-card glass-card reveal-item">
+                    <div class="wish-icon">👑</div>
+                    <h3>True Queen</h3>
+                    <p>Strong, graceful, and absolutely unstoppable — that's you</p>
+                </div>
+                <div class="wish-card glass-card reveal-item">
+                    <div class="wish-icon">💖</div>
+                    <h3>Incredible Friend</h3>
+                    <p>The kind of friend everyone wishes they had</p>
+                </div>
+                <div class="wish-card glass-card reveal-item">
+                    <div class="wish-icon">✨</div>
+                    <h3>One in a Million</h3>
+                    <p>There's nobody quite like you — absolutely one of a kind</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Interactive Cake -->
+    <section id="cake" class="section cake-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-emoji">🎂</span>
+                <h2 class="section-title light-title">Make a Wish!</h2>
+                <div class="title-decoration light-decoration">
+                    <span></span><span></span><span></span>
+                </div>
+                <p class="cake-instruction">Tap the cake to blow out the candles 🕯️</p>
+            </div>
+            <div class="cake-container" id="cake-container">
+                <div class="cake">
+                    <div class="candle-row">
+                        <div class="candle"><div class="flame" id="flame-1"></div></div>
+                        <div class="candle"><div class="flame" id="flame-2"></div></div>
+                        <div class="candle"><div class="flame" id="flame-3"></div></div>
+                        <div class="candle"><div class="flame" id="flame-4"></div></div>
+                        <div class="candle"><div class="flame" id="flame-5"></div></div>
+                    </div>
+                    <div class="cake-top">
+                        <span class="cake-text">Happy B'day</span>
+                    </div>
+                    <div class="cake-layer layer-1"></div>
+                    <div class="cake-layer layer-2"></div>
+                    <div class="cake-layer layer-3"></div>
+                    <div class="cake-plate"></div>
+                </div>
+                <div class="wish-reveal" id="wish-reveal">
+                    <p class="wish-text">🎉 May all your wishes come true, Shreya! 🎉</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Grand Finale -->
+    <section id="finale" class="section finale-section">
+        <div class="finale-content">
+            <div class="finale-text">
+                <h2 class="finale-title">
+                    <span class="finale-line">Happy Birthday</span>
+                    <span class="finale-name">Shreya</span>
+                </h2>
+                <p class="finale-subtitle">Here's to an incredible year ahead 🥂</p>
+                <div class="finale-hearts">
+                    <span>💖</span><span>💖</span><span>💖</span>
+                </div>
+                <p class="finale-footer">Made with love, just for you ❤️</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
