@@ -363,7 +363,7 @@ function playBirthdayMelody() {
         gain.connect(audioCtx.destination);
         osc.type = 'sine';
         osc.frequency.value = note.freq;
-        gain.gain.setValueAtTime(0.08, time);
+        gain.gain.setValueAtTime(0.4, time);
         gain.gain.exponentialRampToValueAtTime(0.001, time + note.dur * 0.9);
         osc.start(time);
         osc.stop(time + note.dur);
