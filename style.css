@@ -920,9 +920,8 @@ body {
 
 .wishes-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    max-width: 900px;
+    grid-template-columns: 1fr;
+    max-width: 480px;
     margin: 0 auto;
 }
 
