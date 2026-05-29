@@ -197,6 +197,13 @@ function initTypewriter() {
             setTimeout(type, delay);
         } else {
             el.classList.remove('typing');
+            // Show the bold line after typewriter finishes
+            const boldLine = document.querySelector('.bold-line');
+            if (boldLine) {
+                setTimeout(() => {
+                    boldLine.classList.add('visible');
+                }, 500);
+            }
         }
     }
 
@@ -258,7 +265,32 @@ function initCake() {
     });
 }
 
-// ---- Smooth Scroll ----
+// ---- Smooth Scroll + Auto-Play Music ----
+let audioCtx = null;
+let musicPlaying = false;
+let melodyInterval = null;
+
+function startMusic() {
+    if (musicPlaying) return;
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    musicPlaying = true;
+    document.getElementById('music-toggle').classList.add('playing');
+    playBirthdayMelody();
+}
+
+function stopMusic() {
+    musicPlaying = false;
+    document.getElementById('music-toggle').classList.remove('playing');
+    if (melodyInterval) {
+        clearTimeout(melodyInterval);
+        melodyInterval = null;
+    }
+    if (audioCtx) {
+        audioCtx.close();
+        audioCtx = null;
+    }
+}
+
 function initSmoothScroll() {
     const scrollCta = document.getElementById('scroll-cta');
     if (scrollCta) {
@@ -268,38 +300,27 @@ function initSmoothScroll() {
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
+            // Auto-start music on first interaction
+            startMusic();
         });
     }
 }
 
-// ---- Music Toggle (placeholder - no actual audio) ----
+// ---- Music Toggle ----
 function initMusicToggle() {
     const btn = document.getElementById('music-toggle');
-    let playing = false;
-
-    // Create a birthday tune using Web Audio API
-    let audioCtx = null;
-
     btn.addEventListener('click', () => {
-        playing = !playing;
-        btn.classList.toggle('playing', playing);
-
-        if (playing) {
-            // Simple birthday melody using Web Audio API
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            playBirthdayMelody(audioCtx);
+        if (musicPlaying) {
+            stopMusic();
         } else {
-            if (audioCtx) {
-                audioCtx.close();
-                audioCtx = null;
-            }
+            startMusic();
         }
     });
 }
 
-function playBirthdayMelody(ctx) {
+function playBirthdayMelody() {
+    if (!audioCtx || !musicPlaying) return;
+
     // "Happy Birthday" melody notes (frequency, duration)
     const notes = [
         { freq: 262, dur: 0.3 }, // C
@@ -332,12 +353,14 @@ function playBirthdayMelody(ctx) {
         { freq: 349, dur: 1.2 }, // F
     ];
 
-    let time = ctx.currentTime + 0.1;
+    let totalDuration = 0;
+    let time = audioCtx.currentTime + 0.1;
+
     notes.forEach(note => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
         osc.connect(gain);
-        gain.connect(ctx.destination);
+        gain.connect(audioCtx.destination);
         osc.type = 'sine';
         osc.frequency.value = note.freq;
         gain.gain.setValueAtTime(0.08, time);
@@ -345,7 +368,13 @@ function playBirthdayMelody(ctx) {
         osc.start(time);
         osc.stop(time + note.dur);
         time += note.dur;
+        totalDuration += note.dur;
     });
+
+    // Loop: replay after the melody ends + a short pause
+    melodyInterval = setTimeout(() => {
+        if (musicPlaying) playBirthdayMelody();
+    }, (totalDuration + 1.5) * 1000);
 }
 
 // ---- Section fade-in on scroll ----

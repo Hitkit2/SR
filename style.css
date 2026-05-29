@@ -643,8 +643,14 @@ body {
     position: relative;
     z-index: 2;
     opacity: 0;
-    animation: fadeSlideUp 1s var(--transition-smooth) 0.5s forwards;
+    transform: translateY(20px);
+    transition: all 1s var(--transition-smooth);
     text-shadow: 0 0 20px var(--gold-glow);
+}
+
+.bold-line.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .message-signature {
@@ -751,6 +757,157 @@ body {
     font-size: 14px;
     color: var(--text-secondary);
     font-weight: 300;
+}
+
+/* No Photos Card */
+.no-photos-card {
+    max-width: 600px;
+    margin: 0 auto 60px;
+    padding: 50px 40px;
+    text-align: center;
+}
+
+.no-photos-content {
+    position: relative;
+    z-index: 2;
+}
+
+.no-photos-icon-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.no-photo-emoji {
+    font-size: 36px;
+    display: inline-block;
+}
+
+.np-1 { animation: float 3s ease-in-out 0s infinite; opacity: 0.6; }
+.np-2 { animation: float 3s ease-in-out 0.5s infinite; font-size: 44px; }
+.np-3 { animation: float 3s ease-in-out 1s infinite; opacity: 0.6; }
+
+.no-photos-title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.no-photos-message {
+    font-family: var(--font-body);
+    font-size: clamp(14px, 2.5vw, 16px);
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.highlight-text {
+    color: var(--gold-light);
+    font-weight: 500;
+    font-style: italic;
+}
+
+.no-photos-promise {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: rgba(212, 168, 83, 0.08);
+    border: 1px solid rgba(212, 168, 83, 0.15);
+    border-radius: 50px;
+}
+
+.promise-icon {
+    font-size: 20px;
+    animation: float 2s ease-in-out infinite;
+}
+
+.promise-text {
+    font-size: 13px;
+    color: var(--gold-primary);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+/* Her Photos Section */
+.her-photos-header {
+    text-align: center;
+    margin-bottom: 36px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s var(--transition-smooth);
+}
+
+.her-photos-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.her-photos-title {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--pink-light), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+}
+
+.her-photos-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.her-photos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.her-photo-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s var(--transition-smooth);
+}
+
+.her-photo-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.her-photo-item:nth-child(2) { transition-delay: 0.15s; }
+.her-photo-item:nth-child(3) { transition-delay: 0.3s; }
+
+.her-photo-frame {
+    padding: 12px;
+    transition: all 0.4s var(--transition-smooth);
+}
+
+.her-photo-frame:hover {
+    transform: translateY(-8px) scale(1.03);
+    border-color: var(--pink-primary);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--pink-glow);
+}
+
+.her-photo-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+.her-photo-frame:hover .photo-placeholder {
+    border-color: var(--pink-glow);
 }
 
 /* ============================================
@@ -1110,6 +1267,15 @@ body {
         right: 20px;
         width: 48px;
         height: 48px;
+    }
+
+    .her-photos-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+    }
+
+    .no-photos-card {
+        padding: 36px 20px;
     }
 }
 
