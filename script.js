@@ -269,6 +269,28 @@ function initCake() {
 let audioCtx = null;
 let musicPlaying = false;
 let melodyInterval = null;
+let gestureListenersAdded = false;
+
+function removeGestureListeners() {
+    if (gestureListenersAdded) {
+        document.removeEventListener('click', startMusicOnGesture);
+        document.removeEventListener('touchstart', startMusicOnGesture);
+        gestureListenersAdded = false;
+    }
+}
+
+function startMusicOnGesture(e) {
+    if (e && e.target && e.target.closest('#music-toggle')) return;
+    startMusic();
+}
+
+function initAutoPlayMusic() {
+    if (!gestureListenersAdded) {
+        document.addEventListener('click', startMusicOnGesture);
+        document.addEventListener('touchstart', startMusicOnGesture, { passive: true });
+        gestureListenersAdded = true;
+    }
+}
 
 function startMusic() {
     if (musicPlaying) return;
@@ -276,6 +298,7 @@ function startMusic() {
     musicPlaying = true;
     document.getElementById('music-toggle').classList.add('playing');
     playBirthdayMelody();
+    removeGestureListeners();
 }
 
 function stopMusic() {
@@ -392,6 +415,25 @@ function initSectionAnimations() {
     sections.forEach(s => observer.observe(s));
 }
 
+// ---- Auto-play Music when Entering Letter Section ----
+function initLetterSectionMusicTrigger() {
+    const target = document.getElementById('message');
+    if (!target) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (!musicPlaying) {
+                    startMusic();
+                }
+                observer.unobserve(target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    observer.observe(target);
+}
+
 // ---- Initialize Everything ----
 document.addEventListener('DOMContentLoaded', () => {
     initTypewriter();
@@ -399,5 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCake();
     initSmoothScroll();
     initMusicToggle();
+    initAutoPlayMusic();
+    initLetterSectionMusicTrigger();
     initSectionAnimations();
 });
