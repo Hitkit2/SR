@@ -1381,6 +1381,232 @@ body {
     z-index: 9998;
     pointer-events: none;
 }
+/* ---------- 3D Greeting Card ---------- */
+.card-3d-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 60px auto 20px;
+    position: relative;
+    z-index: 5;
+}
+
+.card-hint {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    animation: hintPulse 2.5s infinite alternate;
+}
+
+@keyframes hintPulse {
+    0% { opacity: 0.5; transform: scale(0.97); }
+    100% { opacity: 1; transform: scale(1.03); color: var(--gold-light); }
+}
+
+.card-3d-container {
+    width: 280px;
+    height: 380px;
+    position: relative;
+    perspective: 1200px;
+    cursor: pointer;
+}
+
+.card-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    transition: box-shadow 0.8s ease;
+}
+
+.card-3d-container.open .card-3d {
+    box-shadow: -15px 25px 45px rgba(0, 0, 0, 0.6);
+}
+
+/* Cover (flips left) */
+.card-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
+    border-radius: 12px;
+}
+
+.card-3d-container.open .card-cover {
+    transform: rotateY(-180deg);
+}
+
+.card-cover-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    z-index: 2;
+    background: linear-gradient(135deg, #1f142e, #471131);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.card-front-content {
+    position: relative;
+    z-index: 2;
+}
+
+.card-emoji {
+    font-size: 60px;
+    display: block;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.card-cover-front h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.card-sub {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+}
+
+.card-front-pattern {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(rgba(212, 168, 83, 0.15) 1px, transparent 0);
+    background-size: 16px 16px;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+/* Inside Left (back of cover) */
+.card-cover-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    z-index: 1;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card-inside-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Inside Right (back page) */
+.card-inside-right {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: linear-gradient(135deg, rgba(31, 20, 46, 0.95), rgba(71, 17, 49, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 30px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-inside-right-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-queen-emoji {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.card-inside-right h4 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--gold-light);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.card-inside-right p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.card-quote {
+    font-style: italic;
+    font-size: clamp(12px, 3.2vw, 13.5px) !important;
+    line-height: 1.7 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    max-width: 230px;
+    margin: 0 auto 20px;
+}
+
+.card-signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: var(--pink-light);
+    font-weight: 500;
+}
+
+/* Responsive Scaling for Card */
+@media (max-width: 480px) {
+    .card-3d-container {
+        width: 240px;
+        height: 330px;
+    }
+    
+    .card-cover-front h3 {
+        font-size: 22px;
+    }
+    
+    .card-inside-right h4 {
+        font-size: 19px;
+    }
+    
+    .card-inside-right p {
+        font-size: 12px;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+    
+    .card-signature {
+        font-size: 24px;
+    }
+}
+
 /* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar {
     width: 6px;

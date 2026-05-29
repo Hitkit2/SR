@@ -542,6 +542,29 @@ function initSparkleCursor() {
     }
     animate();
 }
+// ---- 3D Birthday Card Logic ----
+function initBirthdayCard() {
+    const cardContainer = document.getElementById('birthday-card');
+    const hint = document.querySelector('.card-hint');
+    if (!cardContainer) return;
+
+    cardContainer.addEventListener('click', () => {
+        cardContainer.classList.toggle('open');
+        
+        if (cardContainer.classList.contains('open')) {
+            if (hint) {
+                hint.innerHTML = "Tap again to close 💌";
+            }
+            // Launch confetti celebration when card opens!
+            launchConfetti();
+        } else {
+            if (hint) {
+                hint.innerHTML = "Tap the card to open it 💌";
+            }
+        }
+    });
+}
+
 // ---- Initialize Everything ----
 document.addEventListener('DOMContentLoaded', () => {
     initTypewriter();
@@ -552,5 +575,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initAutoPlayMusic();
     initLetterSectionMusicTrigger();
     initSparkleCursor();
+    initBirthdayCard();
     initSectionAnimations();
 });
