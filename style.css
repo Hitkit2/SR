@@ -634,6 +634,19 @@ body {
     50% { border-color: transparent; }
 }
 
+.bold-line {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-top: 24px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeSlideUp 1s var(--transition-smooth) 0.5s forwards;
+    text-shadow: 0 0 20px var(--gold-glow);
+}
+
 .message-signature {
     position: relative;
     z-index: 2;
