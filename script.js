@@ -434,6 +434,114 @@ function initLetterSectionMusicTrigger() {
     observer.observe(target);
 }
 
+// ---- Sparkle Canvas (Cursor Trail) ----
+function initSparkleCursor() {
+    const canvas = document.getElementById('sparkle-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    
+    const pointer = { x: -9999, y: -9999, active: false };
+    
+    window.addEventListener('mousemove', (e) => {
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+        pointer.active = true;
+        spawnSparkles(e.clientX, e.clientY);
+    });
+    
+    window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+            pointer.x = e.touches[0].clientX;
+            pointer.y = e.touches[0].clientY;
+            pointer.active = true;
+            spawnSparkles(pointer.x, pointer.y);
+        }
+    }, { passive: true });
+    
+    class Sparkle {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 8 + 3;
+            this.vx = (Math.random() - 0.5) * 2;
+            this.vy = (Math.random() - 0.5) * 2 - 1.5;
+            this.opacity = 1;
+            this.decay = Math.random() * 0.02 + 0.015;
+            this.color = Math.random() > 0.5 ? 'rgba(212, 168, 83,' : 'rgba(233, 30, 140,';
+            this.shape = Math.floor(Math.random() * 3);
+            this.angle = Math.random() * Math.PI * 2;
+            this.spin = (Math.random() - 0.5) * 0.08;
+        }
+        
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.angle += this.spin;
+            this.opacity -= this.decay;
+        }
+        
+        draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.angle);
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = this.color + '1)';
+            
+            if (this.shape === 0) {
+                ctx.beginPath();
+                for (let i = 0; i < 4; i++) {
+                    ctx.lineTo(0, -this.size);
+                    ctx.rotate(Math.PI / 2);
+                }
+                ctx.closePath();
+                ctx.fill();
+            } else if (this.shape === 1) {
+                ctx.beginPath();
+                ctx.moveTo(0, this.size / 4);
+                ctx.bezierCurveTo(-this.size / 2, -this.size / 2, -this.size, -this.size / 6, 0, this.size);
+                ctx.bezierCurveTo(this.size, -this.size / 6, this.size / 2, -this.size / 2, 0, this.size / 4);
+                ctx.closePath();
+                ctx.fill();
+            } else {
+                ctx.beginPath();
+                ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            ctx.restore();
+        }
+    }
+    
+    function spawnSparkles(x, y) {
+        if (Math.random() < 0.35) {
+            particles.push(new Sparkle(x, y));
+        }
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (let i = particles.length - 1; i >= 0; i--) {
+            particles[i].update();
+            if (particles[i].opacity <= 0) {
+                particles.splice(i, 1);
+            } else {
+                particles[i].draw();
+            }
+        }
+        
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
 // ---- Initialize Everything ----
 document.addEventListener('DOMContentLoaded', () => {
     initTypewriter();
@@ -443,5 +551,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initMusicToggle();
     initAutoPlayMusic();
     initLetterSectionMusicTrigger();
+    initSparkleCursor();
     initSectionAnimations();
 });

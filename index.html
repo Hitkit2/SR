@@ -27,6 +27,9 @@
     <!-- Particle Canvas -->
     <canvas id="particles-canvas"></canvas>
 
+    <!-- Cursor Sparkle Canvas -->
+    <canvas id="sparkle-canvas"></canvas>
+
     <!-- Floating Music Toggle -->
     <button id="music-toggle" class="music-btn" aria-label="Toggle music">
         <span class="music-icon">🎵</span>
@@ -139,29 +142,32 @@
                 <h3 class="her-photos-title">The Birthday Queen 👑</h3>
                 <!-- <p class="her-photos-subtitle">Some glimpses of the most beautiful soul ✨</p> -->
             </div>
-            <div class="her-photos-grid">
-                <!--
-                    TO ADD HER PHOTOS:
-                    1. Put photo files (e.g. photo1.jpg) in this same folder
-                    2. Replace the <div class="photo-placeholder">...</div> block
-                       with: <img src="photo1.jpg" alt="SRishtii" class="her-photo-img">
-                -->
-                <div class="her-photo-item reveal-item">
-                    <div class="her-photo-frame glass-card">
-                        <img src="Assets/WhatsApp%20Image%202026-05-29%20at%2008.51.07.jpeg" alt="SRishtii" class="her-photo-img">
-                        <div class="gallery-caption"><p>Beautiful as always 💖</p></div>
+            <div class="her-photos-grid polaroid-gallery">
+                <div class="her-photo-item polaroid-card reveal-item" style="--rotation: -4deg;">
+                    <div class="polaroid-tape"></div>
+                    <div class="polaroid-frame">
+                        <div class="polaroid-img-wrapper">
+                            <img src="Assets/WhatsApp%20Image%202026-05-29%20at%2008.51.07.jpeg" alt="SRishtii" class="her-photo-img">
+                        </div>
+                        <div class="polaroid-caption">Beautiful as always 💖</div>
                     </div>
                 </div>
-                <div class="her-photo-item reveal-item">
-                    <div class="her-photo-frame glass-card">
-                        <img src="Assets/WhatsApp%20Image%202026-05-29%20at%2008.52.21.jpeg" alt="SRishtii" class="her-photo-img">
-                        <div class="gallery-caption"><p>That gorgeous smile 😍</p></div>
+                <div class="her-photo-item polaroid-card reveal-item" style="--rotation: 3deg; --delay: 0.15s;">
+                    <div class="polaroid-tape"></div>
+                    <div class="polaroid-frame">
+                        <div class="polaroid-img-wrapper">
+                            <img src="Assets/WhatsApp%20Image%202026-05-29%20at%2008.52.21.jpeg" alt="SRishtii" class="her-photo-img">
+                        </div>
+                        <div class="polaroid-caption">That gorgeous smile 😍</div>
                     </div>
                 </div>
-                <div class="her-photo-item reveal-item">
-                    <div class="her-photo-frame glass-card">
-                        <img src="Assets/WhatsApp%20Image%202026-05-29%20at%2008.51.07%20(1).jpeg" alt="SRishtii" class="her-photo-img">
-                        <div class="gallery-caption"><p>Queen vibes only 👑</p></div>
+                <div class="her-photo-item polaroid-card reveal-item" style="--rotation: -2deg; --delay: 0.3s;">
+                    <div class="polaroid-tape"></div>
+                    <div class="polaroid-frame">
+                        <div class="polaroid-img-wrapper">
+                            <img src="Assets/WhatsApp%20Image%202026-05-29%20at%2008.51.07%20(1).jpeg" alt="SRishtii" class="her-photo-img">
+                        </div>
+                        <div class="polaroid-caption">Queen vibes only 👑</div>
                     </div>
                 </div>
             </div>
